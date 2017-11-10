@@ -1,0 +1,10 @@
+{:es
+ {:url "http://localhost:9200/"
+  :headers {}}
+ ;; Store that tracks the ARS metrics
+ :es-store
+ {:url "http://localhost:9200/"
+  :index "ars-stats"}
+ :threads 4
+ ;; retrieve every 5 seconds
+ :period-seconds 5}
