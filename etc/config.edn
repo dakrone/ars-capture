@@ -1,10 +1,24 @@
-{:es
- {:url "http://localhost:9200/"
-  :headers {}}
- ;; Store that tracks the ARS metrics
- :es-store
- {:url "http://localhost:9200/"
-  :index "ars-stats"}
+{
+ ;; Cluster being captured from
+ :es {:url "http://localhost:9200/"
+      :headers {}}
+ ;; Cluster where stats are stored
+ :es-store {:url "http://localhost:9200/"
+            :index "ars-stats"
+            :creation-settings
+            {:settings
+             {:index.number_of_shards 1
+              :index.number_of_replicas 1}
+             :mappings
+             {:doc
+              {:dynamic_templates
+               [{:ranks {:path_match "*.rank"
+                         :mapping {:type "double"}}}
+                {:node-names {:match_mapping_type "string"
+                              :mapping {:type "keyword"}}}]
+               :properties
+               {:timestamp {:type "date"
+                            :format "epoch_millis"}}}}}}
  :threads 4
- ;; retrieve every 5 seconds
- :period-seconds 5}
+ ;; retrieve every 3 seconds
+ :period-seconds 3}
