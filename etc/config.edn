@@ -20,5 +20,5 @@
                {:timestamp {:type "date"
                             :format "epoch_millis"}}}}}}
  :threads 4
- ;; retrieve every 3 seconds
- :period-seconds 3}
+ ;; retrieve every 2 seconds
+ :period-seconds 2}
